@@ -1,0 +1,13 @@
+API KEY: yzYgHkUgmfQQdJFLoQtbCZUJ5
+API Key Secret: W8adtAuoGtu3qUiCSjF5wXBWzof23G1Jo3wXnK6vekVu93upSF
+
+Access Token: 1423921567948427268-BWXqapHz9W9KRiNPQ0d8BI4wOi4Isi
+Access Token Secret: cmW6OyqyCJROOjLCE3PhCCR0oEssOM9sdOcAT72Mvrdh6
+
+Hackathon_Socail_media_scraping
+
+API Key: qZvjrJELbPt0QcyXpoLzTrP64
+API Key Secret: Fjilw3PEMNqRLtyNB0CAfDnfWBMaXCAPGLCtWnm59Ar9JBU5wj
+Bearer Token: AAAAAAAAAAAAAAAAAAAAALYHnAEAAAAAFvRt7fSNyxlXcIT4zdDsyWhFwwY%3Dgim3tAil1wWz90CR4jRJr88m9LwS7BX3qYU94N7dJUAruWeagA
+access token: 1423921567948427268-ZQIsssBCi7UffFPuJls0Tz1oER6zsg
+access token secret: bvZtxJzixY2BOTIq1eJxxnOZLAPChlwI9K5XBSK7hUKh9
