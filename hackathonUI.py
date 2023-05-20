@@ -48,7 +48,7 @@ def search_tweets(keyword, count):
         created_at = tweet.created_at
         local_time = convert_utc_to_local(created_at)
         local_time_str = local_time.strftime("%Y-%m-%d %H:%M:%S")
-        st.write(f"Time: {local_time_str}")
+        st.write(f"Time (IST): {local_time_str}")
         st.write(f"User: {tweet.user.screen_name}")
         st.write(f"Tweet: {tweet.full_text}")
         st.write(f"Link: https://twitter.com/{tweet.user.screen_name}/status/{tweet.id}")
@@ -73,33 +73,42 @@ def search_user(username):
 
 # Function to scrape Instagram hashtags
 def scrape_hashtags(hashtag, count):
-    posts = instaloader.Profile.from_username(loader.context, hashtag).get_posts()
-    post_count = 0
+    try:
+        loader.login("testcyberx", "xrebyctset")  # Instagram login credentials
 
-    for post in posts:
-        if post_count >= count:
-            break
-
-        post_count += 1
-        st.write(f"Caption: {post.caption}")
-        st.write(f"Likes: {post.likes}")
-        st.write(f"Link: https://www.instagram.com/p/{post.shortcode}")
-        st.write("---")
-
+        counter = 0
+        for post in instaloader.Hashtag.from_name(loader.context, hashtag).get_posts():
+            try:
+                i=0
+                st.write('username: ',post.owner_username)
+                st.write('Link: ',post.url)
+                st.write('date (IST): ',post.date_local) # Convert to UTC +5:30 Time zone
+                st.write('Caption: ',post.caption)
+                i=i+1               
+            except KeyError:
+                print("Error: 'display_src' attribute not found for this post.")
+            counter += 1
+            if counter == count:
+                break
+    except instaloader.exceptions.LoginRequiredException:
+        st.write("Login failed. Please check your Instagram login credentials.")
 # Function to search subreddit
 def search_reddit(subreddit, limit):
     for submission in reddit.subreddit(subreddit).hot(limit=limit):
+        created_at = datetime.fromtimestamp(submission.created_utc)
+        local_time = convert_utc_to_local(created_at)  # Convert to to IST
+        local_time_str = local_time.strftime("%Y-%m-%d %H:%M:%S")
         st.write("Title: ", submission.title)
         st.write("Post Id: ", submission.id)
         st.write("Submitted by: u/", submission.author)
-        st.write("Created at: ", submission.created_utc)
+        st.write("Created at (IST): ", local_time_str)
         st.write("Submission score: ", submission.score)
         st.write("Upvote ratio: ", submission.upvote_ratio)
         st.write("URL: ", submission.url)
         st.write("\n")
 
 # Streamlit app
-st.set_page_config(page_title="HackElevate", page_icon=":satellite_antenna:", layout="centered")
+st.set_page_config(page_title="HackElevate", page_icon=":ninja:", layout="centered")
 
 # Navigation bar
 with st.sidebar:
